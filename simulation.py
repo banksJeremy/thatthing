@@ -1,3 +1,4 @@
+#!/usr/bin/env python3.1
 from random import random
 
 class World(object):
@@ -7,7 +8,11 @@ class World(object):
         self.things = []
     
     def populate(self, types):
-        "Populate the simulation with one individual per provided species."
+        """Populate the simulation with an individual per provided species.
+        
+        For example, you could call .populate([Animal, Plant, Plant, Plant])
+        to have an animal and three plants. You might write this more clearly
+        as .populate([Animal] + 3 * [Plant])."""
         
         for species in types:
             self.things.append(species(self))
@@ -15,7 +20,7 @@ class World(object):
     def tick(self):
         "Advance the simulation by a frame."
         
-        
+        # TODO: change the properties of the things in this simulation
 
 class Guy(object):
     radius = 5

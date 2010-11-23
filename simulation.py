@@ -1,5 +1,5 @@
 #!/usr/bin/env python3.1
-from random import random
+from random import random, randint
 
 class World(object):
     def __init__(self, width, height):
@@ -20,7 +20,12 @@ class World(object):
     def tick(self):
         "Advance the simulation by a frame."
         
-        # TODO: change the properties of the things in this simulation
+        # we're randomly changing the attributes of each thing as a demo.
+        
+        for thing in self.things:
+            thing.x = thing.x + randint(-1, 1)
+            thing.y = thing.y + randint(-1, 1)
+            thing.radius = thing.radius + randint(-1, 1)
 
 class Guy(object):
     radius = 5
@@ -43,3 +48,24 @@ class Animal(Guy):
 class Plant(Guy):
     GENES = "toxicity", "growth rate", "repo-life", "baby-life", "baby distance", "repulsion"
     color = "green"
+
+
+
+
+
+
+
+
+
+def main():
+    "Set up and display a simple simulation when this file is run."
+    
+    from display import display_and_run
+    
+    world = World(512, 512)
+    world.populate(10 * [Animal] + 5 * [Plant])
+    display_and_run(world, frequency=60)
+
+if __name__ == "__main__":
+    import sys
+    sys.exit(main(*sys.argv[1:]))
